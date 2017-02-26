@@ -652,7 +652,9 @@
          */
         this._trackPage = function (url, title, custom) {
           url = url ? url : getUrl();
-          title = title ? title : $document[0].title;
+          //title = title ? title : $document[0].title;  // Keeps getting previous title before the view is updated
+          var lastSlashIndex = url.lastIndexOf('/');
+          title = title ? title :  url.substring(lastSlashIndex  + 1);
           _gaJs(function () {
             // http://stackoverflow.com/questions/7322288/how-can-i-set-a-page-title-with-google-analytics
             _gaq('_set', 'title', title);
